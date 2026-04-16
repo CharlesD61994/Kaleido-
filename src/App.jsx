@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import { VIEWS, KALEIDOSCOPE_COLORS } from "./core/constants";
-import { KALEIDO_EASE, KALEIDO_TIMING_FAST, KALEIDO_TIMING_BASE, KALEIDO_TIMING_SCREEN, KALEIDO_TIMING_SLOW } from "./core/motion";
-import { getViewMotionStyle } from "./core/navigation";
+const VIEWS = { HUB: 'hub', LIBRARY: 'library', PATRON_EDITOR: 'patron_editor', ROW_COUNTER: 'row_counter', PDF_VIEWER: 'pdf_viewer' };
+const KALEIDOSCOPE_COLORS = [
+{ bg: "#7C3AED", light: "#A78BFA" }, // violet
+{ bg: "#EC4899", light: "#F9A8D4" }, // rose vif
+{ bg: "#F97316", light: "#FDBA74" }, // orange vif
+{ bg: "#06B6D4", light: "#67E8F9" }, // cyan
+{ bg: "#10B981", light: "#6EE7B7" }, // vert menthe
+{ bg: "#EAB308", light: "#FDE68A" }, // jaune doré
+{ bg: "#3B82F6", light: "#93C5FD" }, // bleu clair
+{ bg: "#EF4444", light: "#FCA5A5" }, // corail rouge
+];
 
-
-
-
+const KALEIDO_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+const KALEIDO_TIMING_FAST = "180ms";
+const KALEIDO_TIMING_BASE = "220ms";
+const KALEIDO_TIMING_SCREEN = "260ms";
+const KALEIDO_TIMING_SLOW = "560ms";
 
 const GLOBAL_MOTION_CSS = `
   button, [data-kaleido-pressable="true"] {
@@ -95,6 +105,9 @@ const GLOBAL_MOTION_CSS = `
   }
 `;
 
+const getViewMotionStyle = (transitionName) => {
+  return { animation: "none" };
+};
 
 const Icon = ({ name, size = 20, stroke = 1.9, color = "currentColor", style = {} }) => {
 const common = {
